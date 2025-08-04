@@ -6,6 +6,8 @@ require("lazy").setup({
 
 	require("config.plugins.gitsigns"),
 
+	require ("config.plugins.snacks"),
+
 	require("config.plugins.diffview"),
 
 	require("config.plugins.telescope"),
