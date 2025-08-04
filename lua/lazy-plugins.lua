@@ -10,6 +10,8 @@ require("lazy").setup({
 
 	require("config.plugins.telescope"),
 
+	require("config.plugins.fff"),
+
 	require("config.plugins.lspconfig"),
 
 	require("config.plugins.conform"),
