@@ -80,6 +80,8 @@ return {
           -- or a suggestion from your LSP for this to activate.
           map('ga', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
 
+          map('<leader>h', vim.lsp.buf.hover, '[H]over Documentation')
+
           -- Find references for the word under your cursor.
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 

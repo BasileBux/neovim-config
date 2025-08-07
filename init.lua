@@ -21,6 +21,8 @@ require("autocommands")
 
 require("commands")
 
+require("scratch").setup()
+
 require("lazy-bootstrap")
 
 require("lazy-plugins")

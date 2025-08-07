@@ -63,3 +63,10 @@ vim.keymap.set("n", "<leader>m", function()
 		vim.notify("Make: Failed", vim.log.levels.ERROR, { title = "Make" })
 	end
 end, { desc = "Make" })
+
+-- Scratch buffer keymaps
+local scratch = require('scratch')
+vim.keymap.set("n", "<leader>x", scratch.toggle_float, { desc = "Toggle scratch buffer (float)" })
+vim.keymap.set("n", "<leader>xs", scratch.toggle_split, { desc = "Toggle scratch buffer (split)" })
+vim.keymap.set("n", "<leader>xf", scratch.toggle_fullscreen, { desc = "Toggle scratch buffer (fullscreen)" })
+vim.keymap.set("n", "<leader>xw", scratch.save, { desc = "Save scratch buffer" })
