@@ -1,43 +1,154 @@
 return {
 	{
 		"yetone/avante.nvim",
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+		-- ⚠️ must add this setting! ! !
+		build = vim.fn.has("win32") ~= 0
+			and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+			or "make",
 		event = "VeryLazy",
 		version = false, -- Never set this value to "*"! Never!
+		---@module 'avante'
+		---@type avante.Config
 		opts = {
-			provider = "copilot",
-			-- provider = "gemini",
+			-- provider = "moonshot",
+			provider = "sonic", -- Free for now I guess and pretty good it seems
 			providers = {
-				copilot = {
-					-- model = "claude-3.5-sonnet",
-					model = "claude-sonnet-4",
+				claude = {
+					endpoint = "https://api.anthropic.com",
+					model = "claude-sonnet-4-20250514",
+					timeout = 30000,
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 20480,
+					},
+				},
+				moonshot = {
+					endpoint = "https://api.moonshot.ai/v1",
+					model = "kimi-k2-0711-preview",
+					timeout = 30000,
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 32768,
+					},
 				},
 				gemini = {
-					model = "gemini-2.5-pro-preview-03-25",
+					endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+					model = "gemini-2.5-pro",
+					timeout = 30000,
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 150000,
+					},
+				},
+				openai = {
+					endpoint = "https://api.openai.com/v1",
+					model = "gpt-5-2025-08-07",
+					timeout = 30000,
+					extra_request_body = {
+						temperature = 1,
+						max_completion_tokens = 20480,
+					},
+				},
+				copilot = {
+					endpoint = "https://api.github.com",
+					model = "claude-sonnet-4",
+					timeout = 30000,
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 20480,
+					},
+				},
+
+				-- Custom sonic provider
+				sonic = {
+					__inherited_from = "openai",
+					endpoint = "https://gateway.opencode.ai/v1",
+					model = "Sonic",
 				},
 			},
-			behaviour = {
-				enable_token_counting = false,
-			},
-			windows = {
-				width = 40,
-			},
 		},
-
-		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		build = "make",
-		-- build = "make BUILD_FROM_SOURCE=true",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
+			"echasnovski/mini.pick", -- for file_selector provider mini.pick
 			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"hrsh7th/nvim-cmp",     -- autocompletion for avante commands and mentions
+			"ibhagwan/fzf-lua",     -- for file_selector provider fzf
+			"stevearc/dressing.nvim", -- for input provider dressing
+			"folke/snacks.nvim",    -- for input provider snacks
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			-- Needs either "github/copilot.vim" or "zbirenbaum/copilot.vim" to
-			-- be installed for provider = "copilot"
-			"MeanderingProgrammer/render-markdown.nvim",
+			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
+			{
+				-- Make sure to set this up properly if you have lazy=true
+				'MeanderingProgrammer/render-markdown.nvim',
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
 		},
-	},
+	}
 }
+
+-- return {
+-- 	{
+-- 		"yetone/avante.nvim",
+-- 		event = "VeryLazy",
+-- 		version = false, -- Never set this value to "*"! Never!
+-- 		opts = {
+-- 			provider = "copilot",
+-- 			-- provider = "gemini",
+-- 			providers = {
+-- 				copilot = {
+-- 					model = "claude-3.5-sonnet",
+-- 					-- model = "claude-sonnet-4",
+-- 				},
+-- 				gemini = {
+-- 					model = "gemini-2.5-pro-preview-03-25",
+-- 				},
+-- 			},
+-- 			behaviour = {
+-- 				enable_token_counting = false,
+-- 			},
+-- 			windows = {
+-- 				width = 40,
+-- 			},
+-- 		},
+--
+-- 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+-- 		build = "make",
+-- 		-- build = "make BUILD_FROM_SOURCE=true",
+-- 		dependencies = {
+-- 			"nvim-treesitter/nvim-treesitter",
+-- 			"stevearc/dressing.nvim",
+-- 			"nvim-lua/plenary.nvim",
+-- 			"MunifTanjim/nui.nvim",
+-- 			--- The below dependencies are optional,
+-- 			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+-- 			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+-- 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+-- 			-- Needs either "github/copilot.vim" or "zbirenbaum/copilot.vim" to
+-- 			-- be installed for provider = "copilot"
+-- 			"MeanderingProgrammer/render-markdown.nvim",
+-- 		},
+-- 	},
+-- }

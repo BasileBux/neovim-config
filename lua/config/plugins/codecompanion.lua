@@ -5,23 +5,22 @@ return {
 			require("codecompanion").setup({
 				-- Owned: gemini, anthropic, copilot
 				adapters = {
-					anthropic = function()
-						return require("codecompanion.adapters").extend("anthropic", {
-							name = "anthropic_cheaper",
-							schema = {
-								model = {
-									default = "claude-3-5-sonnet-20241022",
-								},
-							},
-						})
-					end,
-
 					gemini = function()
 						return require("codecompanion.adapters").extend("gemini", {
 							name = "gemini_better",
 							schema = {
 								model = {
 									default = "gemini-2.5-pro-preview-03-25",
+								},
+							},
+						})
+					end,
+					openai = function()
+						return require("codecompanion.adapters").extend("openai", {
+							name = "openai",
+							schema = {
+								model = {
+									default = "gpt-5-2025-08-07"
 								},
 							},
 						})
@@ -34,8 +33,8 @@ return {
 								model = {
 									-- default = "claude-3.7-sonnet-thought",
 									-- default = "claude-3.7-sonnet",
-									default = "claude-sonnet-4",
-									-- default = "claude-3.5-sonnet",
+									-- default = "claude-sonnet-4",
+									default = "claude-3.5-sonnet",
 									-- default = "gpt-4o-2024-08-06",
 									-- default = "o1-2024-12-17",
 									-- default = "o3-mini-2025-01-31",
@@ -46,29 +45,30 @@ return {
 							},
 						})
 					end,
+
+					anthropic = function()
+						return require("codecompanion.adapters").extend("anthropic", {
+							name = "anthropic",
+							schema = {
+								model = {
+									default = "claude-sonnet-4-20250514",
+								},
+							},
+						})
+					end,
 				},
 
 				strategies = {
-					-- Copilot uses claude-3.5-sonnet which has a small context window.
-					-- For bigger context windows, use default model (4o) or directly use
-					-- Anthropic adapter (which defaults to 3.5-sonnet for cost reasons).
-
 					-- Available: "copilot", "anthropic", "gemini", "openai"
 					chat = {
-						adapter = "copilot", -- basically free
-						-- adapter = "gemini",
+						-- adapter = "copilot", -- basically free (but limited)
+						adapter = "anthropic",
 					},
 					inline = {
 						adapter = "copilot",
 					},
 				},
-				display = {
-					chat = {
-						show_settings = false, -- Set to true to show settings in chat
-					},
-				},
-				opts = {
-				},
+				opts = {},
 			})
 		end,
 		dependencies = {

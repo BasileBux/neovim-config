@@ -14,10 +14,10 @@ vim.keymap.set({ "n", "i" }, "<C-j>", "<cmd>tabprevious<CR>")
 vim.keymap.set({ "n", "i" }, "<C-k>", "<cmd>tabnext<CR>")
 
 -- Move tabs to reorganize them
-vim.keymap.set("n", "<C-A-j>", "<cmd>tabm -1<CR>")
-vim.keymap.set("n", "<C-A-k>", "<cmd>tabm +1<CR>")
+-- vim.keymap.set("n", "<C-A-j>", "<cmd>tabm -1<CR>")
+-- vim.keymap.set("n", "<C-A-k>", "<cmd>tabm +1<CR>")
 
-vim.keymap.set("n", "<leader>t", "<cmd>tabnew<CR>")
+-- vim.keymap.set("n", "<leader>t", "<cmd>tabnew<CR>")
 
 vim.keymap.set("n", "<leader>v", "<cmd>vsplit<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>split<CR>")
@@ -32,8 +32,6 @@ vim.keymap.set("n", "<S-k>", "<cmd>wincmd k<CR>", { desc = "Move focus to the up
 
 vim.keymap.set("n", "<A-h>", "<cmd>cprev<CR>", { desc = "Go to previous element in quickfix list" })
 vim.keymap.set("n", "<A-l>", "<cmd>cnext<CR>", { desc = "Go to previous element in quickfix list" })
-
-vim.keymap.set("n", "<leader>ff", "<cmd>Ex<CR>")
 
 vim.keymap.set({ "n", "i", "v" }, "<A-j>", "<cmd>m+1<cr>")
 vim.keymap.set({ "n", "i", "v" }, "<A-k>", "<cmd>m-2<cr>")

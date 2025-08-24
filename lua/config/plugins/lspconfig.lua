@@ -24,7 +24,7 @@ return {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',    opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -223,7 +223,25 @@ return {
         -- ts_ls = {},
         --
 
+        qmlls = {
+          cmd = { 'qmlls', '-E' },
+          filetypes = { 'qml', 'qmljs' },
+          root_markers = { '.git' },
+        },
+
         lua_ls = {
+          cmd = { 'lua-language-server' },
+          filetypes = { 'lua' },
+          root_markers = {
+            '.luarc.json',
+            '.luarc.jsonc',
+            '.luacheckrc',
+            '.stylua.toml',
+            'stylua.toml',
+            'selene.toml',
+            'selene.yml',
+            '.git',
+          },
           settings = {
             Lua = {
               workspace = {
@@ -233,6 +251,30 @@ return {
                 callSnippet = 'Replace',
               },
             },
+          },
+        },
+
+        gopls = {},
+
+        clangd = {
+          cmd = { 'clangd' },
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+          root_markers = {
+            '.clangd',
+            '.clang-tidy',
+            '.clang-format',
+            'compile_commands.json',
+            'compile_flags.txt',
+            'configure.ac',
+            '.git',
+          },
+          capabilities = {
+            textDocument = {
+              completion = {
+                editsNearCursor = true,
+              },
+            },
+            offsetEncoding = { 'utf-8', 'utf-16' },
           },
         },
       }
@@ -250,25 +292,37 @@ return {
       --
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      -- local ensure_installed = vim.tbl_keys(servers or {})
+      -- local ensure_installed = vim.tbl_keys(servers)
+      -- vim.list_extend(ensure_installed, {
+      -- })
+      -- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
+      for name, config in pairs(servers) do
+        if config == true then
+          config = {}
+        end
+
+        config = vim.tbl_deep_extend('force', {}, {
+          capabilities = capabilities,
+        }, config)
+        require('lspconfig')[name].setup(config)
+      end
+
+      -- require('mason-lspconfig').setup {
+      --   ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+      --   automatic_installation = false,
+      --   handlers = {
+      --     function(server_name)
+      --       local server = servers[server_name] or {}
+      --       -- This handles overriding only values explicitly passed
+      --       -- by the server configuration above. Useful when disabling
+      --       -- certain features of an LSP (for example, turning off formatting for ts_ls)
+      --       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+      --       require('lspconfig')[server_name].setup(server)
+      --     end,
+      --   },
+      -- }
     end,
   },
 }

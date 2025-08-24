@@ -12,6 +12,8 @@ require("lazy").setup({
 
 	require("config.plugins.telescope"),
 
+	require("config.plugins.harpoon"),
+
 	require("config.plugins.fff"),
 
 	require("config.plugins.lspconfig"),
