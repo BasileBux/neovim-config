@@ -174,9 +174,13 @@ return {
           },
         },
 
+        kotlin_lsp = {},
+
         gopls = {},
         clangd = {},
         basedpyright = {},
+        digestif = {},
+        rust_analyzer = {},
       }
 
       -- Uncomment the following to automatically install LSP servers

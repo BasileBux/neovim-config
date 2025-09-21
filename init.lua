@@ -21,7 +21,9 @@ require("autocommands")
 
 require("commands")
 
-require("scratch").setup()
+-- Custom modules
+require("custom.scratch").setup()
+require("custom.android").setup()
 
 require("lazy-bootstrap")
 

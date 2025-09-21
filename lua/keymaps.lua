@@ -9,16 +9,6 @@ vim.keymap.set("i", "jj", "<Esc>")
 -- Insert line above
 vim.keymap.set("n", "OO", "o<esc>")
 
--- Move between tabs with ctrl + <jk>
-vim.keymap.set({ "n", "i" }, "<C-j>", "<cmd>tabprevious<CR>")
-vim.keymap.set({ "n", "i" }, "<C-k>", "<cmd>tabnext<CR>")
-
--- Move tabs to reorganize them
--- vim.keymap.set("n", "<C-A-j>", "<cmd>tabm -1<CR>")
--- vim.keymap.set("n", "<C-A-k>", "<cmd>tabm +1<CR>")
-
--- vim.keymap.set("n", "<leader>t", "<cmd>tabnew<CR>")
-
 vim.keymap.set("n", "<leader>v", "<cmd>vsplit<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>split<CR>")
 
@@ -62,9 +52,3 @@ vim.keymap.set("n", "<leader>m", function()
 	end
 end, { desc = "Make" })
 
--- Scratch buffer keymaps
-local scratch = require('scratch')
-vim.keymap.set("n", "<leader>x", scratch.toggle_float, { desc = "Toggle scratch buffer (float)" })
-vim.keymap.set("n", "<leader>xs", scratch.toggle_split, { desc = "Toggle scratch buffer (split)" })
-vim.keymap.set("n", "<leader>xf", scratch.toggle_fullscreen, { desc = "Toggle scratch buffer (fullscreen)" })
-vim.keymap.set("n", "<leader>xw", scratch.save, { desc = "Save scratch buffer" })

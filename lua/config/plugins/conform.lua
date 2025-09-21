@@ -37,6 +37,8 @@ return {
 				markdown = { "markdownlint" },
 				java = { "clang-format" },
 				go = { "goimports" },
+				xml = { "xmlformat" },
+				nix = { "nixfmt" },
 			},
 
 			formatters = {

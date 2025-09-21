@@ -49,7 +49,9 @@ require("lazy").setup({
 
 	require("config.plugins.codecompanion"),
 
-	require("config.plugins.avante"),
+	-- require("config.plugins.avante"),
+
+	require("config.plugins.kitty-scrollback"),
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

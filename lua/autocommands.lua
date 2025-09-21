@@ -13,10 +13,10 @@ autocmd('TextYankPost', {
 })
 
 -- Remove trailing whitespace on save
-autocmd('BufWritePre', {
-  pattern = '',
-  command = '%s/\\s\\+$//e'
-})
+-- autocmd('BufWritePre', {
+--   pattern = '',
+--   command = '%s/\\s\\+$//e'
+-- })
 
 -- Auto-resize splits when Vim window is resized
 autocmd('VimResized', {

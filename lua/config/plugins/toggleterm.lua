@@ -33,8 +33,9 @@ return {
                 tab_term:toggle()
             end, {})
 
-            vim.keymap.set("n", "<leader>y", "<cmd>Ft<cr>", { noremap = true, silent = true })
+            vim.keymap.set("n", "<leader>u", "<cmd>Ft<cr>", { noremap = true, silent = true })
             vim.keymap.set("n", "<leader><CR>", "<cmd>Tt<cr>", { noremap = true, silent = true })
+            vim.keymap.set("n", "<leader>l", "<cmd>Vt<cr>", { noremap = true, silent = true })
         end,
     },
 }
