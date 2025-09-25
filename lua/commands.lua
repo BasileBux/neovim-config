@@ -168,6 +168,7 @@ end, {})
 -- Variable to store the window ID of the active shell script window
 local current_shell_win_id = nil
 
+-- WARNING: Not really needed anymore and should be removed in future
 vim.api.nvim_create_user_command("Shell", function()
 	-- Check if a valid shell window already exists and focus it
 	if current_shell_win_id and vim.api.nvim_win_is_valid(current_shell_win_id) then

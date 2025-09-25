@@ -26,7 +26,7 @@ return {
 			-- 	}
 			-- end,
 			formatters_by_ft = {
-				-- lua = { "stylua" },
+				lua = { "stylua" },
 				css = { "prettier" },
 				javascript = { "prettier" },
 				html = { "prettier" },
@@ -39,12 +39,6 @@ return {
 				go = { "goimports" },
 				xml = { "xmlformat" },
 				nix = { "nixfmt" },
-			},
-
-			formatters = {
-				stylua = {
-					command = "stylua",
-				},
 			},
 		},
 	},

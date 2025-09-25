@@ -8,7 +8,7 @@ require("lazy").setup({
 
 	require("config.plugins.indent-blankline"),
 
-	require ("config.plugins.snacks"),
+	require("config.plugins.snacks"),
 
 	require("config.plugins.diffview"),
 
@@ -53,6 +53,9 @@ require("lazy").setup({
 
 	require("config.plugins.kitty-scrollback"),
 }, {
+	git = {
+		timeout = 300,
+	},
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
 		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
