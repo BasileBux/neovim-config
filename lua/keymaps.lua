@@ -35,8 +35,12 @@ vim.keymap.set({ "n", "i", "v" }, "<A-j>", "<cmd>m+1<cr>")
 vim.keymap.set({ "n", "i", "v" }, "<A-k>", "<cmd>m-2<cr>")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count = -1, float = true}) end, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count = 1, float = true}) end, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
@@ -57,4 +61,3 @@ vim.keymap.set("n", "<leader>m", function()
 		vim.notify("Make: Failed", vim.log.levels.ERROR, { title = "Make" })
 	end
 end, { desc = "Make" })
-

@@ -56,7 +56,7 @@ vim.opt.colorcolumn = "80"
 vim.g.netrw_banner = 0
 
 vim.filetype.add({
-  extension = {
-    sage = "python",
-  },
+	extension = {
+		sage = "python",
+	},
 })

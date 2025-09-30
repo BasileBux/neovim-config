@@ -6,6 +6,6 @@ return {
 		config = function()
 			require("vague").setup({})
 			vim.cmd("colorscheme vague")
-		end
+		end,
 	},
 }

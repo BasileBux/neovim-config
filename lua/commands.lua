@@ -159,7 +159,7 @@ vim.api.nvim_create_user_command("Prompts", function()
 			local filepath = file_lookup[choice]
 			local content = table.concat(vim.fn.readfile(filepath), "\n")
 			-- vim.fn.setreg('"', content) -- If system clipboard != unnamed register
-			vim.fn.setreg('+', content) -- If system clipboard == unnamed register
+			vim.fn.setreg("+", content) -- If system clipboard == unnamed register
 			vim.notify("Prompt copied to clipboard", vim.log.levels.INFO)
 		end
 	end)
@@ -274,63 +274,57 @@ vim.api.nvim_create_user_command("Shell", function()
 	end)
 
 	-- 3. Map Enter Key in the script buffer
-	vim.api.nvim_buf_set_keymap(
-		script_bufnr,
-		"n",
-		"<CR>",
-		"",
-		{
-			noremap = true,
-			silent = true,
-			callback = function()
-				-- Get content and write to the actual temporary file
-				local script_content = vim.api.nvim_buf_get_lines(script_bufnr, 0, -1, false)
-				local write_ok = vim.fn.writefile(script_content, temp_script_path)
-				if write_ok ~= 0 then
-					vim.notify("Error writing temporary script file: " .. temp_script_path, vim.log.levels.ERROR)
-					return
-				end
-				-- Make executable *after* writing
-				vim.fn.setfperm(temp_script_path, "rwxr-xr-x")
+	vim.api.nvim_buf_set_keymap(script_bufnr, "n", "<CR>", "", {
+		noremap = true,
+		silent = true,
+		callback = function()
+			-- Get content and write to the actual temporary file
+			local script_content = vim.api.nvim_buf_get_lines(script_bufnr, 0, -1, false)
+			local write_ok = vim.fn.writefile(script_content, temp_script_path)
+			if write_ok ~= 0 then
+				vim.notify("Error writing temporary script file: " .. temp_script_path, vim.log.levels.ERROR)
+				return
+			end
+			-- Make executable *after* writing
+			vim.fn.setfperm(temp_script_path, "rwxr-xr-x")
 
-				-- Execute the script
-				local output_lines = {}
-				local job_id = vim.fn.jobstart(temp_script_path, {
-					stdout_buffered = true,
-					stderr_buffered = true,
-					on_stdout = function(_, data)
-						if data then
-							for _, line in ipairs(data) do
-								if line ~= "" then
-									table.insert(output_lines, line)
-								end
+			-- Execute the script
+			local output_lines = {}
+			local job_id = vim.fn.jobstart(temp_script_path, {
+				stdout_buffered = true,
+				stderr_buffered = true,
+				on_stdout = function(_, data)
+					if data then
+						for _, line in ipairs(data) do
+							if line ~= "" then
+								table.insert(output_lines, line)
 							end
 						end
-					end,
-					on_stderr = function(_, data)
-						if data then
-							table.insert(output_lines, "--- STDERR ---")
-							for _, line in ipairs(data) do
-								if line ~= "" then
-									table.insert(output_lines, line)
-								end
+					end
+				end,
+				on_stderr = function(_, data)
+					if data then
+						table.insert(output_lines, "--- STDERR ---")
+						for _, line in ipairs(data) do
+							if line ~= "" then
+								table.insert(output_lines, line)
 							end
 						end
-					end,
-					on_exit = function(_, code)
-						table.insert(output_lines, "--- EXIT CODE: " .. code .. " ---")
-						-- Ensure execution happens in the main loop to avoid API errors
-						vim.schedule(function()
-							display_output(output_lines)
-						end)
-					end,
-				})
-				if job_id <= 0 then
-					vim.notify("Failed to start job for script: " .. temp_script_path, vim.log.levels.ERROR)
-				end
-			end,
-		}
-	)
+					end
+				end,
+				on_exit = function(_, code)
+					table.insert(output_lines, "--- EXIT CODE: " .. code .. " ---")
+					-- Ensure execution happens in the main loop to avoid API errors
+					vim.schedule(function()
+						display_output(output_lines)
+					end)
+				end,
+			})
+			if job_id <= 0 then
+				vim.notify("Failed to start job for script: " .. temp_script_path, vim.log.levels.ERROR)
+			end
+		end,
+	})
 
 	-- 4. Cleanup: Delete the temp file when the buffer is wiped out
 	vim.api.nvim_create_autocmd("BufWipeout", {
