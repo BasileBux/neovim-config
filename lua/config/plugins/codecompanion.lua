@@ -32,16 +32,7 @@ return {
 								name = "copilot",
 								schema = {
 									model = {
-										-- default = "claude-3.7-sonnet-thought",
-										-- default = "claude-3.7-sonnet",
-										-- default = "claude-sonnet-4",
-										default = "claude-3.5-sonnet",
-										-- default = "gpt-4o-2024-08-06",
-										-- default = "o1-2024-12-17",
-										-- default = "o3-mini-2025-01-31",
-										-- default = "o1-mini-2024-09-12",
-										-- default = "gemini-2.0-flash-001",
-										-- default = "gemini-2.5-pro",
+										default = "claude-sonnet-4",
 									},
 								},
 							})
@@ -57,6 +48,25 @@ return {
 								},
 							})
 						end,
+
+						-- Custom moonshot adapter (OpenAI compatible)
+						moonshot = function()
+							return require("codecompanion.adapters").extend("openai_compatible", {
+								name = "moonshot",
+								formatted_name = "Moonshot",
+								env = {
+									api_key = "MOONSHOT_API_KEY",
+									url = "https://api.moonshot.ai",
+									chat_url = "/v1/chat/completions",
+									models_endpoint = "/v1/models",
+								},
+								schema = {
+									model = {
+										default = "kimi-k2-0905-preview",
+									},
+								},
+							})
+						end,
 					},
 				},
 
@@ -64,7 +74,7 @@ return {
 					-- Available: "copilot", "anthropic", "gemini", "openai"
 					chat = {
 						-- adapter = "copilot", -- basically free (but limited)
-						adapter = "anthropic",
+						adapter = "moonshot",
 					},
 					inline = {
 						adapter = "copilot",
