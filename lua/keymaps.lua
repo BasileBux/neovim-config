@@ -9,6 +9,14 @@ vim.keymap.set("i", "jj", "<Esc>")
 -- Insert line above
 vim.keymap.set("n", "OO", "o<esc>")
 
+-- Close diffview in one command
+vim.keymap.set("n", "<C-a>", function()
+	if vim.bo.filetype == "DiffviewFiles" then
+		vim.cmd("DiffviewClose")
+		vim.cmd("quit")
+	end
+end)
+
 vim.keymap.set("n", "<leader>v", "<cmd>vsplit<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>split<CR>")
 
@@ -39,8 +47,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
--- vim.keymap.set({ "n", "i", "v" }, "<leader>m", "<cmd>!make<CR>", { desc = "Make" })
 
 vim.keymap.set("n", "<leader>m", function()
 	vim.fn.system("make")
