@@ -24,6 +24,8 @@ require("lazy").setup({
 
 	require("config.plugins.blink-cmp"),
 
+	require("config.plugins.lsp_lines"),
+
 	require("config.plugins.surround"),
 
 	-- Theme : There are many themes in `config.plugins.themes`

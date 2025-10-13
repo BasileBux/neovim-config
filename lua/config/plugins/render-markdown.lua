@@ -7,8 +7,8 @@ return {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {
-			file_types = { "markdown", "codecompanion", "Avante" },
+			file_types = { "markdown", "vimwiki", "codecompanion", "Avante", "drunkdriver" },
 		},
-		ft = { "markdown", "codecompanion", "Avante" },
+		ft = { "markdown", "vimwiki", "codecompanion", "Avante", "drunkdriver" },
 	},
 }

@@ -106,6 +106,11 @@ return {
 						return diagnostic_message[diagnostic.severity]
 					end,
 				},
+
+        -- Config for lsp_lines.nvim
+				virtual_lines = {
+					only_current_line = true,
+				},
 			})
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
