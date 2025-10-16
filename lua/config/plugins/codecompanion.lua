@@ -6,49 +6,6 @@ return {
 				-- Owned: gemini, anthropic, copilot
 				adapters = {
 					http = {
-						gemini = function()
-							return require("codecompanion.adapters").extend("gemini", {
-								name = "gemini_better",
-								schema = {
-									model = {
-										default = "gemini-2.5-pro-preview-03-25",
-									},
-								},
-							})
-						end,
-						openai = function()
-							return require("codecompanion.adapters").extend("openai", {
-								name = "openai",
-								schema = {
-									model = {
-										default = "gpt-5-2025-08-07",
-									},
-								},
-							})
-						end,
-
-						copilot = function()
-							return require("codecompanion.adapters").extend("copilot", {
-								name = "copilot",
-								schema = {
-									model = {
-										default = "claude-sonnet-4",
-									},
-								},
-							})
-						end,
-
-						anthropic = function()
-							return require("codecompanion.adapters").extend("anthropic", {
-								name = "anthropic",
-								schema = {
-									model = {
-										default = "claude-sonnet-4-20250514",
-									},
-								},
-							})
-						end,
-
 						-- Custom moonshot adapter (OpenAI compatible)
 						moonshot = function()
 							return require("codecompanion.adapters").extend("openai_compatible", {
@@ -71,21 +28,39 @@ return {
 				},
 
 				strategies = {
-					-- Available: "copilot", "anthropic", "gemini", "openai"
 					chat = {
-						-- adapter = "copilot", -- basically free (but limited)
-						adapter = "moonshot",
+						adapter = {
+							name = "moonshot",
+							model = "kimi-k2-0905-preview",
+						},
+						keymaps = {
+							send = {
+								modes = { n = "<CR>", i = "<C-CR>" },
+								opts = {},
+							},
+						},
 					},
 					inline = {
-						adapter = "copilot",
+						adapter = {
+							name = "copilot",
+							model = "claude-haiku-4.5",
+						},
 					},
 				},
 				opts = {},
 			})
+			require("config.plugins.custom-mods.codecompanion-fidget-spinner"):init()
 		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"j-hui/fidget.nvim",
 		},
+		vim.api.nvim_set_keymap(
+			"n",
+			"<leader>cc",
+			"<cmd>CodeCompanionChat Toggle<CR>",
+			{ noremap = true, silent = true }
+		),
 	},
 }
