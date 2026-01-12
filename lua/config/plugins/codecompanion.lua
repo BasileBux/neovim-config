@@ -1,6 +1,8 @@
 return {
 	{
 		"olimorris/codecompanion.nvim",
+		-- version = "v17.33.0",
+
 		config = function()
 			require("codecompanion").setup({
 				-- Owned: gemini, anthropic, copilot
@@ -27,7 +29,7 @@ return {
 					},
 				},
 
-				strategies = {
+				interactions = {
 					chat = {
 						adapter = {
 							name = "moonshot",

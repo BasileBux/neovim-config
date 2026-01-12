@@ -24,12 +24,11 @@ require("lazy").setup({
 
 	require("config.plugins.blink-cmp"),
 
-	require("config.plugins.lsp_lines"),
-
 	require("config.plugins.surround"),
 
 	-- Theme : There are many themes in `config.plugins.themes`
-	require("config.plugins.themes.cyberdream"),
+	-- require("config.plugins.themes.cyberdream"),
+	require("config.plugins.themes.rose-pine"),
 
 	require("config.plugins.todo-comments"),
 
@@ -40,6 +39,8 @@ require("lazy").setup({
 	require("config.plugins.lualine"),
 
 	require("config.plugins.markdown-preview"),
+
+	require("config.plugins.typst-preview"),
 
 	require("config.plugins.render-markdown"),
 
@@ -54,6 +55,8 @@ require("lazy").setup({
 	-- require("config.plugins.avante"),
 
 	require("config.plugins.kitty-scrollback"),
+
+	require("config.plugins.drunk-driver"),
 }, {
 	git = {
 		timeout = 300,

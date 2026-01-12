@@ -39,3 +39,31 @@ autocmd("FileType", {
 		vim.opt.softtabstop = 4
 	end,
 })
+
+-- autocmd("BufWritePost", {
+-- 	pattern = { "*.typ", "*.tex" },
+-- 	callback = function()
+-- 		local stdout = vim.loop.new_pipe()
+-- 		local stderr = vim.loop.new_pipe()
+--
+-- 		local handle
+-- 		handle, _ = vim.loop.spawn("make", {
+-- 			args = {},
+-- 			stdio = { nil, stdout, stderr },
+-- 		}, function(code)
+-- 			vim.schedule(function()
+-- 				if code == 0 then
+-- 					vim.notify("Make: Success", vim.log.levels.INFO, { title = "Make" })
+-- 				else
+-- 					vim.notify("Make: Failed", vim.log.levels.ERROR, { title = "Make" })
+-- 				end
+-- 				if handle then
+-- 					handle:close()
+-- 				end
+-- 			end)
+-- 		end)
+-- 		if not handle then
+-- 			vim.notify("Make: could not start", vim.log.levels.ERROR, { title = "Make" })
+-- 		end
+-- 	end,
+-- })

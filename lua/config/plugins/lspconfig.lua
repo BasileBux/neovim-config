@@ -107,10 +107,11 @@ return {
 					end,
 				},
 
-        -- Config for lsp_lines.nvim
-				virtual_lines = {
-					only_current_line = true,
-				},
+				-- Uncomment to enable nice little lines under errors and warnings
+				-- https://git.sr.ht/~whynothugo/lsp_lines.nvim also does this
+				-- virtual_lines = {
+				-- 	only_current_line = true,
+				-- },
 			})
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
@@ -126,10 +127,6 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--  If you want to have a server enabled, install it with Mason or system-wide and add it to this table with an empty config.
 			local servers = {
-				qmlls = {
-					cmd = { "qmlls", "-E" },
-				},
-
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -140,12 +137,15 @@ return {
 					},
 				},
 
+				qmlls = {},
 				kotlin_lsp = {},
 				gopls = {},
 				clangd = {},
 				basedpyright = {},
 				digestif = {},
 				rust_analyzer = {},
+				tinymist = {},
+				r_language_server = {},
 			}
 
 			for name, config in pairs(servers) do

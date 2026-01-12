@@ -39,6 +39,7 @@ return {
 				go = { "goimports" },
 				xml = { "xmlformat" },
 				nix = { "nixfmt" },
+				r = { "air" },
 			},
 		},
 	},

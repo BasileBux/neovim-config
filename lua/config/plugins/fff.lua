@@ -6,7 +6,8 @@ return {
 		build = "nix run .#release",
 		opts = {
 			-- pass here all the options
-			prompt = "> ",
+			-- 🦦 🪿 🪼
+			prompt = "🦦 ",
 		},
 		keys = {
 			{

@@ -32,7 +32,7 @@ local obscure = {
 	dark_grey = "#0f1419",
 }
 
-local colors = obscure
+local colors = bubblegum_colors
 
 local lualine_theme = {
 	normal = {

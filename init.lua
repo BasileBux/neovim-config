@@ -24,6 +24,7 @@ require("commands")
 -- Custom modules
 require("custom.scratch").setup()
 require("custom.android").setup()
+-- require("custom.boom") -- Funny but really tilting
 
 require("lazy-bootstrap")
 
