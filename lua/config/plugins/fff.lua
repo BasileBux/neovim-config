@@ -17,6 +17,24 @@ return {
 				end,
 				desc = "Open file picker",
 			},
+			{
+				"<leader>fg",
+				function()
+					require("fff").live_grep() -- or live_grep_in_git_root() if you only want git files
+				end,
+				desc = "Open live grep picker",
+			},
+			{
+				"fz",
+				function()
+					require("fff").live_grep({
+						grep = {
+							modes = { "fuzzy", "plain" },
+						},
+					})
+				end,
+				desc = "Live fffuzy grep",
+			},
 		},
 	},
 }
