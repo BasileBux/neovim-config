@@ -4,7 +4,12 @@ return {
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
+		opts = {
+			signs = false,
+			keywords = {
+				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "DEBUG" } },
+			},
+		},
 	},
 
 	{ -- Collection of various small independent plugins/modules

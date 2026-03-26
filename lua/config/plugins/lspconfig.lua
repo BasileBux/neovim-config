@@ -140,14 +140,12 @@ return {
 				},
 
 				qmlls = {},
-				kotlin_lsp = {},
 				gopls = {},
 				clangd = {},
 				basedpyright = {},
 				digestif = {},
 				rust_analyzer = {},
 				tinymist = {},
-				r_language_server = {},
 			}
 
 			for name, config in pairs(servers) do

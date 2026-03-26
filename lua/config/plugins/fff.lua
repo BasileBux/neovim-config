@@ -17,15 +17,22 @@ return {
 				end,
 				desc = "Open file picker",
 			},
-			{
-				"<leader>fg",
+			{ -- Legacy keybinding
+				"<leader>sg",
 				function()
 					require("fff").live_grep() -- or live_grep_in_git_root() if you only want git files
 				end,
 				desc = "Open live grep picker",
 			},
 			{
-				"fz",
+				"<leader>gg",
+				function()
+					require("fff").live_grep() -- or live_grep_in_git_root() if you only want git files
+				end,
+				desc = "Open live grep picker",
+			},
+			{
+				"<leader>sz",
 				function()
 					require("fff").live_grep({
 						grep = {
