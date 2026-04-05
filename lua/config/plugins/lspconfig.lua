@@ -146,6 +146,7 @@ return {
 				digestif = {},
 				rust_analyzer = {},
 				tinymist = {},
+        typescript_language_server = {},
 			}
 
 			for name, config in pairs(servers) do

@@ -10,8 +10,6 @@ require("lazy").setup({
 
 	require("config.plugins.snacks"),
 
-	require("config.plugins.diffview"),
-
 	require("config.plugins.telescope"),
 
 	require("config.plugins.harpoon"),
@@ -34,8 +32,6 @@ require("lazy").setup({
 
 	require("config.plugins.treesitter"),
 
-	require("config.plugins.dashboard"),
-
 	require("config.plugins.lualine"),
 
 	require("config.plugins.markdown-preview"),
@@ -44,22 +40,16 @@ require("lazy").setup({
 
 	require("config.plugins.render-markdown"),
 
-	require("config.plugins.ccc"),
-
 	require("config.plugins.toggleterm"),
 
 	require("config.plugins.copilot"),
 
 	require("config.plugins.codecompanion"),
 
-	-- require("config.plugins.avante"),
-
-	require("config.plugins.kitty-scrollback"),
-
 	require("config.plugins.drunk-driver"),
 }, {
 	git = {
-		timeout = 300,
+		timeout = 600,
 	},
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

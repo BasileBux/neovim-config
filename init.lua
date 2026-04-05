@@ -28,6 +28,8 @@ require("custom.android").setup()
 
 require("lazy-bootstrap")
 
+-- TODO: Problem here which sets the `echo &packpath` to the /nix/store which sucks
+-- Maybe replace lazy completely with pack.add({}) and pack.load()?
 require("lazy-plugins")
 
 vim.opt.tabstop = 4
