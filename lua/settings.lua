@@ -4,7 +4,7 @@ vim.opt.relativenumber = true
 
 vim.opt.mouse = "a"
 
-vim.opt.showmode = false
+vim.opt.showmode = true
 
 -- Share clipboard with OS
 vim.opt.clipboard = "unnamedplus"

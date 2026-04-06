@@ -5,34 +5,73 @@
 ██▐█▌ ███ ▐█▌██ ██▌▐█▌    ▐███▌▐█▌.▐▌██▐█▌██▌.▐█▌▐█▄▪▐█
 ▀▀ █▪. ▀  ▀▀▀▀▀  █▪▀▀▀    ·▀▀▀  ▀█▄▀▪▀▀ █▪▀▀▀ ▀▀▀·▀▀▀▀
 --]]
---
--- Set <space> as the leader key
--- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 vim.g.have_nerd_font = true
 
+vim.pack.add({
+	-- Nice to have / dependencies
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/numToStr/Comment.nvim",
+	"https://github.com/lewis6991/gitsigns.nvim",
+	"https://github.com/folke/snacks.nvim", -- Used for images
+	{ src = "https://github.com/lukas-reineke/indent-blankline.nvim", main = "ibl" },
+	{ src = "https://github.com/folke/todo-comments.nvim", event = "VimEnter" },
+	"https://github.com/stevearc/oil.nvim",
+
+	-- Fuzzy finder
+	"https://github.com/dmtrKovalenko/fff.nvim",
+
+	-- Theme
+	"https://github.com/rose-pine/neovim",
+
+	-- LSP
+	"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/j-hui/fidget.nvim",
+	{ src = "https://github.com/folke/lazydev.nvim", ft = "lua" },
+	{ src = "https://github.com/saghen/blink.cmp", branch = "v1", build = "cargo build --release" },
+	"https://github.com/stevearc/conform.nvim",
+
+	-- Telescope
+	{ src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
+
+	-- Visual cosmetics
+	"https://github.com/nvim-tree/nvim-web-devicons",
+	{
+		src = "https://github.com/MeanderingProgrammer/render-markdown.nvim",
+		ft = { "markdown", "vimwiki", "codecompanion", "drunkdriver" },
+	},
+
+	-- AI slop
+	"https://github.com/github/copilot.vim",
+	{
+		src = "https://www.github.com/olimorris/codecompanion.nvim",
+		version = vim.version.range("^19.0.0"),
+	},
+})
+
 require("settings")
-
 require("keymaps")
-
 require("autocommands")
+require("status-line")
 
-require("commands")
+require("plugins.lsp")
 
--- Custom modules
-require("custom.scratch").setup()
-require("custom.android").setup()
--- require("custom.boom") -- Funny but really tilting
+require("plugins.plugins")
 
-require("lazy-bootstrap")
+require("plugins.codecompanion")
+require("codecompanion-commands")
 
--- TODO: Problem here which sets the `echo &packpath` to the /nix/store which sucks
--- Maybe replace lazy completely with pack.add({}) and pack.load()?
-require("lazy-plugins")
-
-vim.opt.tabstop = 4
+-- rose-pine theme
+require("rose-pine").setup({
+	styles = {
+		italic = false,
+	},
+})
+vim.cmd("colorscheme rose-pine")
 
 -- Better visual panes separation -> must be called at end
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#f578d1", bg = "NONE" })

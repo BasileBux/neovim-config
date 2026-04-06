@@ -4,23 +4,11 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Go back to normal
 vim.keymap.set("i", "kj", "<Esc>")
-vim.keymap.set("i", "jj", "<Esc>")
-
--- Insert line above
-vim.keymap.set("n", "OO", "o<esc>")
-
--- Close diffview in one command
-vim.keymap.set("n", "<C-a>", function()
-	if vim.bo.filetype == "DiffviewFiles" then
-		vim.cmd("DiffviewClose")
-		vim.cmd("quit")
-	end
-end)
 
 vim.keymap.set("n", "<leader>v", "<cmd>vsplit<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>split<CR>")
 
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float) -- NOTE: might need to be moved to lsp.lua
 
 -- Move between splits with shift + <hjkl>
 vim.keymap.set("n", "<S-h>", "<cmd>wincmd h<CR>", { desc = "Move focus to the left window" })
@@ -34,7 +22,7 @@ vim.keymap.set("n", "<A-l>", "<cmd>cnext<CR>", { desc = "Go to previous element 
 vim.keymap.set({ "n", "i", "v" }, "<A-j>", "<cmd>m+1<cr>")
 vim.keymap.set({ "n", "i", "v" }, "<A-k>", "<cmd>m-2<cr>")
 
--- Diagnostic keymaps
+-- Diagnostic keymaps -- NOTE: might need to be moved to lsp.lua
 vim.keymap.set("n", "[d", function()
 	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to previous [D]iagnostic message" })
@@ -44,21 +32,5 @@ end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("t", "<C-]>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
-vim.keymap.set("n", "<leader>m", function()
-	vim.fn.system("make")
-	local success = vim.v.shell_error == 0
-	if success then
-		vim.notify("Make: Success", vim.log.levels.INFO, { title = "Make" })
-	else
-		vim.notify("Make: Failed", vim.log.levels.ERROR, { title = "Make" })
-	end
-end, { desc = "Make" })
