@@ -28,13 +28,35 @@ vim.api.nvim_create_user_command("Ex", function()
 end, { desc = "Open the file explorer" })
 
 -- fff.nvim
-vim.g.fff = { prompt = "🦦" }
+vim.g.fff = { prompt = "🦦 " }
 vim.keymap.set("n", "<leader>ff", function()
 	require("fff").find_files()
 end, { desc = "Open file picker" })
 vim.keymap.set("n", "<leader>sg", function()
 	require("fff").live_grep()
 end, { desc = "Open live grep picker" })
+
+-- Harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
+vim.keymap.set("n", "<leader>t", function()
+	harpoon:list():add()
+end, { desc = "Add file to harpoon" })
+vim.keymap.set("n", "<C-e>", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+for i = 1, 9 do
+	vim.keymap.set("n", "<leader>" .. i, function()
+		harpoon:list():select(i)
+	end, { desc = "Go to harpoon mark " .. i })
+end
+vim.keymap.set("n", "<C-j>", function()
+	harpoon:list():prev()
+end, { desc = "Previous harpoon file" })
+
+vim.keymap.set("n", "<C-k>", function()
+	harpoon:list():next()
+end, { desc = "Next harpoon file" })
 
 -- indent-blankline.nvim
 require("ibl").setup({
@@ -53,6 +75,11 @@ require("todo-comments").setup({
 	keywords = {
 		WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "DEBUG" } },
 	},
+})
+
+-- Render-markdown.nvim
+require("render-markdown").setup({
+	file_types = { "markdown", "vimwiki", "codecompanion" },
 })
 
 -- copilot.vim
