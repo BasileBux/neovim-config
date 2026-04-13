@@ -28,6 +28,7 @@ vim.pack.add({
 
 	-- Theme
 	"https://github.com/rose-pine/neovim",
+	"https://github.com/scottmckendry/cyberdream.nvim",
 
 	-- LSP
 	"https://github.com/neovim/nvim-lspconfig",
@@ -74,7 +75,7 @@ require("rose-pine").setup({
 		italic = false,
 	},
 })
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme cyberdream")
 
 -- Better visual panes separation -> must be called at end
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#f578d1", bg = "NONE" })
