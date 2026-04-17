@@ -24,7 +24,7 @@ vim.pack.add({
 	"https://github.com/dmtrKovalenko/fff.nvim",
 
 	-- Harpoon
-	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2"},
+	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
 
 	-- Theme
 	"https://github.com/rose-pine/neovim",
