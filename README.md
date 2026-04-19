@@ -10,3 +10,6 @@ Some plugins like [fff.nvim](https://github.com/dmtrKovalenko/fff.nvim) and [bli
 might need to be built manually, so go to the plugin directory which should be
 `~/.local/share/nvim/site/pack/*/opt/`. Both plugins cited use rust so it's rather
 easy to build them with `cargo build --release`.
+
+[fff.nvim](https://github.com/dmtrKovalenko/fff.nvim): `nix run .#release`
+[blink.cmp](https://github.com/saghen/blink.cmp): `cargo build --release`
