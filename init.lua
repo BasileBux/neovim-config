@@ -34,7 +34,7 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/j-hui/fidget.nvim",
 	{ src = "https://github.com/folke/lazydev.nvim", ft = "lua" },
-	{ src = "https://github.com/saghen/blink.cmp", branch = "v1", build = "cargo build --release" },
+	{ src = "https://github.com/saghen/blink.cmp", version = "v1", build = "cargo build --release" },
 	"https://github.com/stevearc/conform.nvim",
 
 	-- Telescope

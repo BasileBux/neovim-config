@@ -13,3 +13,6 @@ easy to build them with `cargo build --release`.
 
 [fff.nvim](https://github.com/dmtrKovalenko/fff.nvim): `nix run .#release`
 [blink.cmp](https://github.com/saghen/blink.cmp): `cargo build --release`
+
+> [!NOTE] fff.nvim install
+> requires cargo and gcc to be installed on the system.
