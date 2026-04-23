@@ -20,6 +20,24 @@ require("codecompanion").setup({
 					},
 				})
 			end,
+			-- build.nvidia.com/models. Super slow but free and works
+			nvidia = function()
+				return require("codecompanion.adapters").extend("openai_compatible", {
+					name = "nvidia",
+					formatted_name = "NVIDIA",
+					env = {
+						api_key = "NVIDIA_API_KEY",
+						url = "https://integrate.api.nvidia.com",
+						chat_url = "/v1/chat/completions",
+						models_endpoint = "/v1/models",
+					},
+					schema = {
+						model = {
+							default = "z-ai/glm-5.1",
+						},
+					},
+				})
+			end,
 		},
 	},
 

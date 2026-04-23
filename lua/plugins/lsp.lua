@@ -11,6 +11,7 @@ local lsp_servers = {
 	"ts_ls",
 	"rust_analyzer",
 	"marksman",
+	"bashls",
 }
 
 vim.lsp.enable(lsp_servers)
