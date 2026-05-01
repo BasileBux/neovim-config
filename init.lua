@@ -62,12 +62,15 @@ require("keymaps")
 require("autocommands")
 require("status-line")
 
+require("hex_colorizer")
+
 require("plugins.lsp")
 
 require("plugins.plugins")
 
 require("plugins.codecompanion")
 require("codecompanion-commands")
+
 
 -- rose-pine theme
 require("rose-pine").setup({
