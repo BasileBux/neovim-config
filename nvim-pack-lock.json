@@ -91,6 +91,10 @@
       "rev": "028d9a0695a0cc4cfa893889f8c408ed7ccc8adc",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
+    "themeInitNvim": {
+      "rev": "87e9230e22f88f4242e7122f09333860c1a969c5",
+      "src": "https://github.com/initsyscall/themeInitNvim"
+    },
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
