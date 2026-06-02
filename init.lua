@@ -49,6 +49,11 @@ vim.pack.add({
 		src = "https://github.com/MeanderingProgrammer/render-markdown.nvim",
 		ft = { "markdown", "vimwiki", "codecompanion", "drunkdriver" },
 	},
+	{
+		src = "https://github.com/iamcco/markdown-preview.nvim",
+		build = "cd app && npm install",
+		ft = { "markdown" },
+	},
 
 	-- AI slop
 	"https://github.com/github/copilot.vim",
@@ -57,6 +62,8 @@ vim.pack.add({
 		version = vim.version.range("^19.0.0"),
 	},
 })
+
+vim.g.mkdp_filetypes = { "markdown" }
 
 require("settings")
 require("keymaps")
@@ -71,7 +78,6 @@ require("plugins.plugins")
 
 require("plugins.codecompanion")
 require("codecompanion-commands")
-
 
 -- rose-pine theme
 require("rose-pine").setup({
