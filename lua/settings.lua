@@ -60,3 +60,6 @@ vim.filetype.add({
 		sage = "python",
 	},
 })
+
+-- I much prefer 4 spaces tabs, but the Arduino IDE defaults to 2 spaces.
+vim.g.arduino_recommended_style = 0

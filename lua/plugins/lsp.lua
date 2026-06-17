@@ -12,6 +12,7 @@ local lsp_servers = {
 	"rust_analyzer",
 	"marksman",
 	"bashls",
+	"arduino_language_server",
 }
 
 vim.lsp.enable(lsp_servers)
@@ -58,6 +59,7 @@ require("conform").setup({
 		json = { "prettier" },
 		c = { "clang-format" },
 		cpp = { "clang-format" },
+		arduino = { "clang-format" },
 		java = { "clang-format" },
 		go = { "gofmt" },
 		xml = { "xmlformat" },

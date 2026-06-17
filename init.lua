@@ -35,11 +35,11 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/j-hui/fidget.nvim",
 	{ src = "https://github.com/folke/lazydev.nvim", ft = "lua" },
-	{ src = "https://github.com/saghen/blink.cmp", version = "v1", build = "cargo build --release" },
+	{ src = "https://github.com/saghen/blink.cmp", version = "v1" },
 	"https://github.com/stevearc/conform.nvim",
 
 	-- Telescope
-	{ src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{ src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim" },
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
 
@@ -51,7 +51,6 @@ vim.pack.add({
 	},
 	{
 		src = "https://github.com/iamcco/markdown-preview.nvim",
-		build = "cd app && npm install",
 		ft = { "markdown" },
 	},
 
