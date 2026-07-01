@@ -30,10 +30,10 @@ local no_treesitter_highlight = {
 -- Enable treesitter-based syntax highlighting if a parser is available for the filetype
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
-		local lang = vim.bo.filetype
+		local ft = vim.bo.filetype
 		if
-			vim.treesitter.get_parser(0, lang, { error = false })
-			and not vim.tbl_contains(no_treesitter_highlight, lang)
+			vim.treesitter.get_parser(0, nil, { error = false })
+			and not vim.tbl_contains(no_treesitter_highlight, ft)
 		then
 			vim.treesitter.start()
 			vim.bo.syntax = "off"

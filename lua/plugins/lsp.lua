@@ -12,8 +12,29 @@ local lsp_servers = {
 	"rust_analyzer",
 	"marksman",
 	"bashls",
-	"arduino_language_server",
 }
+
+-- If we are in a PlatformIO project, we need to tell clangd to use the correct compiler
+local function get_clangd_cmd()
+	local cmd = { "clangd" }
+	local root = vim.fs.root(0, { "compile_commands.json", ".clangd", "platformio.ini", ".git" })
+	if root then
+		local pio_ini = root .. "/platformio.ini"
+		if vim.uv.fs_stat(pio_ini) then
+			local home = vim.uv.os_homedir()
+			table.insert(
+				cmd,
+				"--query-driver=" .. home .. "/.platformio/packages/toolchain-xtensa-esp32/bin/xtensa-esp32-elf-g++"
+			)
+		end
+	end
+	return cmd
+end
+
+vim.lsp.config("clangd", {
+	cmd = get_clangd_cmd(),
+	root_markers = { "compile_commands.json", ".clangd", "platformio.ini", ".git" },
+})
 
 vim.lsp.enable(lsp_servers)
 

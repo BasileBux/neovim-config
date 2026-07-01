@@ -44,8 +44,8 @@ require("codecompanion").setup({
 	interactions = {
 		chat = {
 			adapter = {
-				name = "copilot",
-				model = "gemini-3.1-pro-preview",
+				name = "moonshot",
+				model = "kimi-k2.6",
 			},
 			keymaps = {
 				send = {
